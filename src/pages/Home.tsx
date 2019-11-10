@@ -1,7 +1,9 @@
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react';
-import React from 'react';
+import {IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonModal, IonButton} from '@ionic/react';
+import React, {useState} from 'react';
+import ExampleForm from "../components/example-form";
 
 const Home: React.FC = () => {
+    const [showModal, setShowModal] = useState(false);
   return (
     <IonPage>
       <IonHeader>
@@ -10,14 +12,11 @@ const Home: React.FC = () => {
         </IonToolbar>
       </IonHeader>
       <IonContent className="ion-padding">
-        The world is your oyster.
-        <p>
-          If you get lost, the{' '}
-          <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/">
-            docs
-          </a>{' '}
-          will be your guide.
-        </p>
+        <ExampleForm />
+          <IonButton onClick={() => setShowModal(true)}>Show hidden form </IonButton>
+          {showModal && (
+              <ExampleForm />
+          )}
       </IonContent>
     </IonPage>
   );
